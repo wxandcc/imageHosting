@@ -1,3 +1,4 @@
 imageHosting/node_modules/*
-imageHosting/.idea/*
+imageHosting/.idea
+imageHosting/uploads/*
 

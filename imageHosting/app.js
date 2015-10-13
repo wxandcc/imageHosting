@@ -9,6 +9,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var upload = require('./routes/upload');
 
+var multer  = require('multer');//file upload header parser
+
+
+
 var app = express();
 
 // view engine setup
@@ -25,7 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/images',upload);
+app.use('/upload',upload);
+
+var multer = multer({dest: './uploads'});
+
+app.post('/file_upload', multer.single('photo'), function (req, res) {
+  console.log(req.file);
+  res.send('uploadOK');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
